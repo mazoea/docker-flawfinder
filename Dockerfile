@@ -1,7 +1,11 @@
 FROM python:3-alpine
-WORKDIR /src
 
-RUN pip install --no-cache-dir flawfinder && \
-    flawfinder --version
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir flawfinder && \
+    rm -rf /root/.cache
 
-CMD ["flawfinder", "/src"]
+WORKDIR /opt/src/
+RUN adduser -D maz
+USER maz
+
+CMD ["flawfinder", "/opt/src"]

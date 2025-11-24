@@ -28,7 +28,7 @@ jobs:
         with:
           MS_TEAMS_URI: ${{ secrets.MS_DQ_TEAMS_WEBHOOK_URI }}
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: pull and build
         run: |
@@ -45,6 +45,4 @@ jobs:
         if: ${{ success() && github.ref_type == 'tag' }}
 
       - uses: mazoea/ga-maz/end@master
-        with:
-          MS_TEAMS_URI: ${{ secrets.MS_DQ_TEAMS_WEBHOOK_URI }}
         if: ${{ always() }}
